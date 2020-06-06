@@ -1,11 +1,11 @@
-import React from "react";
-import { connect } from "react-redux";
-import { addMovie } from "../actions";
-import Movie from "./Movie";
+import React from 'react';
+import { connect } from 'react-redux';
+import { addMovie } from '../actions';
+import Movie from './Movie';
 
 class MovieList extends React.Component {
   state = {
-    newMovie: "",
+    newMovie: '',
   };
   addMovie = (e) => {
     e.preventDefault();
@@ -17,8 +17,8 @@ class MovieList extends React.Component {
       <div>
         <h2>User: {this.props.user.name}</h2>
         <p>Movies to watch: {this.props.moviesToWatch}</p>
-        {this.props.movies.map((movie) => (
-          <Movie movie={movie} />
+        {this.props.movies.map((movie, index) => (
+          <Movie movie={movie} key={index} />
         ))}
         <input onChange={this.handleChanges} value={this.state.newMovie} />
         <button onClick={this.addMovie}>add movie</button>
