@@ -6,22 +6,36 @@ import Movie from './Movie';
 class MovieList extends React.Component {
   state = {
     newMovie: '',
+    addingNewMovie: false,
   };
   addMovie = (e) => {
     e.preventDefault();
-    this.props.addMovie(this.state.newMovie);
+    this.state.newMovie.trim() && this.props.addMovie(this.state.newMovie);
+    this.setState({ addingNewMovie: false, newMovie: '' });
   };
   handleChanges = (e) => this.setState({ newMovie: e.target.value });
   render() {
     return (
       <div>
-        <h2>User: {this.props.user.name}</h2>
-        <p>Movies to watch: {this.props.moviesToWatch}</p>
-        {this.props.movies.map((movie, index) => (
-          <Movie movie={movie} key={index} />
-        ))}
-        <input onChange={this.handleChanges} value={this.state.newMovie} />
-        <button onClick={this.addMovie}>add movie</button>
+        <div className="user-profile">
+          <p>User: {this.props.user.name}</p>
+          <p>Movies to watch: {this.props.moviesToWatch}</p>
+        </div>
+        <ul>
+          {this.props.movies.map((movie, index) => (
+            <Movie movie={movie} key={index} />
+          ))}
+        </ul>
+        {this.state.addingNewMovie ? (
+          <form onSubmit={this.addMovie}>
+            <input onChange={this.handleChanges} value={this.state.newMovie} />
+            <button onClick={this.addMovie}>save</button>
+          </form>
+        ) : (
+          <button onClick={() => this.setState({ addingNewMovie: true })}>
+            add movie
+          </button>
+        )}
       </div>
     );
   }

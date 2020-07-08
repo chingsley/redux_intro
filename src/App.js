@@ -1,7 +1,7 @@
-import React from "react";
-import MovieList from "./components/MovieList";
-import Title from "./components/Title";
-import "./App.css";
+import React from 'react';
+import MovieList from './components/MovieList';
+import Title from './components/Title';
+import './styles.css';
 
 function App() {
   return (

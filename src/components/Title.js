@@ -5,26 +5,42 @@ import { changeTitle } from '../actions';
 class Title extends React.Component {
   state = {
     newTitle: '',
+    editing: false,
   };
 
-  handleChanges = (e) => this.setState({ newTitle: e.target.value });
+  activateTitleEditMode = () => {
+    this.setState({ editing: true });
+  };
+
+  handleChanges = (e) => this.setState({ [e.target.name]: e.target.value });
 
   changeTitle = (e) => {
     e.preventDefault();
-
-    this.props.changeTitle(this.state.newTitle);
+    this.state.newTitle.trim() && this.props.changeTitle(this.state.newTitle);
+    this.setState({ editing: false });
   };
 
   render() {
     return (
       <div>
-        <h1>{this.props.title}</h1>
-        <input
-          type="text"
-          onChange={this.handleChanges}
-          value={this.state.newTitle}
-        />
-        <button onClick={this.changeTitle}>change title</button>
+        {this.state.editing ? (
+          <form onSubmit={this.changeTitle}>
+            <input
+              className="title-input"
+              type="text"
+              name="newTitle"
+              onChange={this.handleChanges}
+              value={this.state.newTitle}
+              placeholder="Enter a New Title"
+            />
+            <button onClick={this.changeTitle}>Save</button>
+          </form>
+        ) : (
+          <h1>
+            {this.props.titleFromRedux}
+            <i className="fa fa-edit" onClick={this.activateTitleEditMode} />
+          </h1>
+        )}
       </div>
     );
   }
@@ -32,7 +48,7 @@ class Title extends React.Component {
 
 const mapStateToProps = (state) => {
   return {
-    title: state.title,
+    titleFromRedux: state.title,
   };
 };
 

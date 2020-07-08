@@ -4,9 +4,11 @@ const initialState = {
   user: { name: 'James' },
   movies: ['Star Wars', 'Lord of the Rings', 'Harry Potter'],
   todoList: [{ task: 'Learn Redux', id: 0, completed: false }],
-  moviesToWatch: 13,
-  title: 'Redux Movies',
+  // moviesToWatch: 13,
+  title: 'Redux Movie List App',
 };
+
+initialState.moviesToWatch = initialState.movies.length;
 
 export const reducer = (state = initialState, action) => {
   console.log(
@@ -20,6 +22,7 @@ export const reducer = (state = initialState, action) => {
       return {
         ...state,
         movies: [...state.movies, action.payload],
+        moviesToWatch: state.movies.length + 1,
       };
     case CHANGE_TITLE:
       return {
