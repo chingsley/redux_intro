@@ -48,7 +48,7 @@ class Title extends React.Component {
 
 const mapStateToProps = (state) => {
   return {
-    titleFromRedux: state.title,
+    titleFromRedux: state.titleReducer.title,
   };
 };
 

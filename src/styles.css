@@ -101,11 +101,11 @@ button:focus {
   transition: 0.5s;
 }
 
-.fa-dragon {
+/* .fa-dragon {
   position: absolute;
   right: 12px;
   top: 9px;
-}
+} */
 
 /* style for movie lists */
 ul {
@@ -124,6 +124,14 @@ li {
 }
 .title-input {
   font-size: 1.4rem;
+}
+
+.movie-li {
+  display: flex;
+  justify-content: space-between;
+}
+.movie-li:hover {
+  cursor: pointer;
 }
 /* .list-title {
   text-align: left;

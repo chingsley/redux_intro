@@ -3,11 +3,13 @@ import ReactDOM from 'react-dom';
 import { applyMiddleware, createStore } from 'redux';
 import { Provider } from 'react-redux';
 import logger from 'redux-logger';
-import { reducer } from './reducers';
+// import { reducer } from './reducers';
+import rootReducer from './reducers';
 import App from './App';
 
 const store = createStore(
-  reducer,
+  // reducer,
+  rootReducer,
   window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
   // applyMiddleware(logger)
 );

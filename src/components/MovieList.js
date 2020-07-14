@@ -43,9 +43,9 @@ class MovieList extends React.Component {
 
 const mapStateToProps = (state) => {
   return {
-    movies: state.movies,
-    moviesToWatch: state.moviesToWatch,
-    user: state.user,
+    user: state.movieReducer.user,
+    movies: state.movieReducer.movies,
+    moviesToWatch: state.movieReducer.moviesToWatch,
   };
 };
 
